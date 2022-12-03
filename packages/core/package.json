@@ -1,0 +1,17 @@
+{
+  "name": "@ios-cursor/core",
+  "version": "0.0.1",
+  "description": "Make your cursor in web looks like ios",
+  "author": "yuusheng <hi@yuusheng.im>",
+  "license": "MIT",
+  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "unbuild"
+  }
+}

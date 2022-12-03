@@ -1,0 +1,21 @@
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 5000;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor__inner {
+  width: var(--cursor-width);
+  height: var(--cursor-width);
+  border: 1px solid var(--color-link);
+  z-index: 5000;
+  transform: rotate(-45deg);
+}
