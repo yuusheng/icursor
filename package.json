@@ -8,10 +8,11 @@
   "scripts": {
     "play": "npm -C playground run dev",
     "lint": "eslint .",
-    "build": "rm -rf packages/*/dist && pnpm -r --filter=./packages/* run build"
+    "build": "rm -rf packages/*/dist && pnpm -r --filter=./packages/* run build",
+    "deploy": "npm run build && npm -C playground run build"
   },
   "dependencies": {
-    "@ios-cursor/core": "workspace:^0.0.1"
+    "@ios-cursor/core": "workspace:*"
   },
   "devDependencies": {
     "@yuusheng/eslint-config": "^0.0.4",
