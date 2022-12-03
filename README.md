@@ -1,4 +1,4 @@
-# ios cursor
+# IOS cursor
 
 (_WIP_)
 
