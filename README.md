@@ -13,5 +13,6 @@ npm i ios-cursor
 ```js
 import Cursor from 'ios-cursor'
 
+// not stable! API could be change at any time
 new Cursor()
 ```
