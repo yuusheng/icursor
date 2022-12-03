@@ -5,12 +5,12 @@
   "author": "yuusheng <hi@yuusheng.im>",
   "license": "MIT",
   "keywords": [],
-  "files": [
-    "dist"
-  ],
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "unbuild"
   }
