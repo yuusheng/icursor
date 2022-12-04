@@ -5,6 +5,7 @@ export default defineBuildConfig({
     'src/index',
     'src/cursor',
     'src/types',
+    'src/utils.ts',
   ],
   clean: true,
   declaration: true,

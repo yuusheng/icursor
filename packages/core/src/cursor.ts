@@ -1,3 +1,5 @@
+import { transform } from './utils'
+
 class Cursor {
   cursor: HTMLElement
   cursorInner: HTMLElement
@@ -7,7 +9,7 @@ class Cursor {
   clientY: number
   stuckX: number
   stuckY: number
-  showCursor!: boolean
+  showCursor: boolean
   isStuck: boolean
   cursorOriginals: any
 
@@ -39,7 +41,7 @@ class Cursor {
 
     const render = () => {
       if (!this.isStuck)
-        this.cursor.style.transform = `translate(${this.clientX}px, ${this.clientY}px)`
+        transform(this.cursor, 0, { x: this.clientX, y: this.clientY })
       requestAnimationFrame(render)
     }
     requestAnimationFrame(render)
@@ -50,30 +52,25 @@ class Cursor {
       this.isStuck = true
       this.stuckX = this.clientX
       this.stuckY = this.clientY
-      // const target = (e.currentTarget as HTMLElement)
-      // const linkBox = target.getBoundingClientRect()
+      const target = (e.currentTarget as HTMLElement)
+      const linkBox = target.getBoundingClientRect()
 
-      // const activeItem = document.querySelector('.nav__link.is-active')
-      // if (activeItem && this.nav.dataset.lastActive !== target.dataset.index) {
-      //   this.nav.dataset.lastActive = activeItem.dataset.index
-      //   activeItem.classList.remove('is-active')
-      // }
-
-      // TweenMax.to(this.cursor, 0.25, {
-      //   x: linkBox.left + linkBox.width / 2 - this.cursorBox.width / 2,
-      //   y: linkBox.top + linkBox.height / 2 - this.cursorBox.height / 2 - 0.5,
-      // })
-      // TweenMax.to(this.cursorInner, 0.2, {
-      //   rotation: 0,
-      //   width: linkBox.width,
-      //   height: linkBox.height,
-      // })
+      transform(this.cursor, 0.25, {
+        x: linkBox.left + linkBox.width / 2 - this.cursorBox.width / 2,
+        y: linkBox.top + linkBox.height / 2 - this.cursorBox.height / 2 - 0.5,
+      })
+      transform(this.cursorInner, 0.2, {
+        rotation: 0,
+        width: linkBox.width,
+        height: linkBox.height,
+      })
     }
 
     // this.stuckX = this.clientX
     // this.stuckY = this.clientY
     // const target = e.currentTarget
     // const linkBox = target.getBoundingClientRect()
+    document.addEventListener('mouseenter', handleMouseEnter)
   }
 }
 

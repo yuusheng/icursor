@@ -1,20 +1,22 @@
+*, html, body {
+  cursor: none;
+}
+
 .cursor {
+  --cursor-width: 20px;
+
   position: fixed;
   left: 0;
   top: 0;
   pointer-events: none;
-  opacity: 1;
   z-index: 5000;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .cursor__inner {
   width: var(--cursor-width);
   height: var(--cursor-width);
-  border: 1px solid var(--color-link);
+  background: rgba(61, 61, 61, 0.12);
+  border: 1px solid rgba(173, 173, 173, 0.26);
   z-index: 5000;
+  border-radius: 100%;
 }
