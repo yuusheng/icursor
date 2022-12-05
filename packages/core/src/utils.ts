@@ -11,7 +11,7 @@ export function transform(element: HTMLElement, duration: number, translateType:
 
   const route = translateType.rotation ? `rotate(${translateType.rotation}deg)` : ''
 
-  const scale = `scale(${translateType.width || 0}, ${translateType.height || 0})`
+  const scale = `scale(${translateType.width || 1}, ${translateType.height || 1})`
 
   element.style.transform = `${translate} ${route} ${scale}`
   element.style.transition = `${duration * 1000}ms`
