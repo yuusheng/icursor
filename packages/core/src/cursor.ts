@@ -1,4 +1,5 @@
 import { transform } from './utils'
+import type { SelectorMap } from './types'
 
 class Cursor {
   cursor: HTMLElement
@@ -12,10 +13,14 @@ class Cursor {
   showCursor: boolean
   isStuck: boolean
   cursorOriginals: any
+  selectors: string[]
+  selector: string | SelectorMap
 
-  constructor() {
+  constructor(selector: string | SelectorMap) {
+    this.selector = selector
+    this.selectors = typeof selector === 'object' ? Object.keys(selector) : [selector]
     this.initCursor()
-    // this.initHovers()
+    this.initHovers()
   }
 
   initCursor() {
@@ -23,7 +28,7 @@ class Cursor {
     this.cursorInner = document.querySelector('.cursor__inner')!
     this.cursorObjectBox = this.cursorInner.getBoundingClientRect()
     this.cursorBox = this.cursor.getBoundingClientRect()
-    // this.easing = Back.easeOut.config(1.7)
+
     this.isStuck = false
     this.clientX = -100
     this.clientY = -100
@@ -48,29 +53,51 @@ class Cursor {
   }
 
   initHovers() {
+    let curClassName
     const handleMouseEnter = (e: Event) => {
+      console.log('event', e)
       this.isStuck = true
       this.stuckX = this.clientX
       this.stuckY = this.clientY
       const target = (e.currentTarget as HTMLElement)
       const linkBox = target.getBoundingClientRect()
 
-      transform(this.cursor, 0.25, {
+      const { height, width } = this.cursorObjectBox
+      transform(this.cursor, 0, {
         x: linkBox.left + linkBox.width / 2 - this.cursorBox.width / 2,
         y: linkBox.top + linkBox.height / 2 - this.cursorBox.height / 2 - 0.5,
       })
       transform(this.cursorInner, 0.2, {
-        rotation: 0,
-        width: linkBox.width,
-        height: linkBox.height,
+        width: linkBox.width / width,
+        height: linkBox.height / height,
       })
+      if (typeof this.selector === 'object') {
+        const className = Array.from((e.target as Element).classList).filter(className => !!this.selector[`.${className}`])
+        console.log('class name', this.selector[`.${className[0]}`])
+
+        curClassName = this.selector[`.${className[0]}`]
+        this.cursorInner.classList.add(curClassName)
+      }
     }
 
-    // this.stuckX = this.clientX
-    // this.stuckY = this.clientY
-    // const target = e.currentTarget
-    // const linkBox = target.getBoundingClientRect()
-    document.addEventListener('mouseenter', handleMouseEnter)
+    const handleMouseLeave = () => {
+      this.isStuck = false
+
+      transform(this.cursorInner, 0.25, {
+        width: 1,
+        height: 1,
+      })
+      this.cursorInner.classList.remove(curClassName)
+    }
+
+    const items = this.selectors.reduce((pre, cur) => {
+      pre.push(...document.querySelectorAll(cur))
+      return pre
+    }, [])
+    items.forEach((item) => {
+      item.addEventListener('mouseenter', handleMouseEnter)
+      item.addEventListener('mouseleave', handleMouseLeave)
+    })
   }
 }
 
