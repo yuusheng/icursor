@@ -1,5 +1,5 @@
 {
-  "name": "ios-cursor",
+  "name": "icursor",
   "version": "0.0.1",
   "description": "Make your cursor in web looks like ios",
   "author": "yuusheng <hi@yuusheng.im>",
@@ -12,7 +12,7 @@
     "deploy": "npm run build && npm -C playground run build"
   },
   "dependencies": {
-    "@ios-cursor/core": "workspace:*"
+    "@icursor/core": "workspace:*"
   },
   "devDependencies": {
     "@yuusheng/eslint-config": "^0.0.4",

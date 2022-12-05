@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { createCursor } from '@ios-cursor/core'
+import { createCursor } from '@icursor/core'
 
 onMounted(() => {
   createCursor({ '.base-btn': 'base-btn-hover' })

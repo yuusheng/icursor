@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@ios-cursor/core': workspace:*
+      '@icursor/core': workspace:*
       '@yuusheng/eslint-config': ^0.0.4
       eslint: ^8.29.0
       turbo: ^1.6.3
@@ -12,7 +12,7 @@ importers:
       unbuild: ^1.0.1
       vite: ^3.2.4
     dependencies:
-      '@ios-cursor/core': link:packages/core
+      '@icursor/core': link:packages/core
     devDependencies:
       '@yuusheng/eslint-config': 0.0.4_s5ps7njkmjlaqajutnox5ntcla
       eslint: 8.29.0
@@ -26,7 +26,7 @@ importers:
 
   playground:
     specifiers:
-      '@ios-cursor/core': workspace:*
+      '@icursor/core': workspace:*
       '@unocss/preset-uno': ^0.47.5
       '@unocss/vite': ^0.47.5
       '@vitejs/plugin-vue': ^3.2.0
@@ -34,7 +34,7 @@ importers:
       vite: ^3.2.4
       vue: ^3.2.45
     dependencies:
-      '@ios-cursor/core': link:../packages/core
+      '@icursor/core': link:../packages/core
       '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.2.0_vite@3.2.4+vue@3.2.45
       vue: registry.npmmirror.com/vue/3.2.45
     devDependencies:
