@@ -53,7 +53,7 @@ class Cursor {
   }
 
   initHovers() {
-    let curClassName
+    let curClassName: string
     const handleMouseEnter = (e: Event) => {
       console.log('event', e)
       this.isStuck = true
