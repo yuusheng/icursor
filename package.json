@@ -8,7 +8,7 @@
   "scripts": {
     "play": "npm -C playground run dev",
     "lint": "eslint .",
-    "build": "rm -rf packages/*/dist && turbo run build",
+    "build": "turbo run build",
     "deploy": "npm run build && npm -C playground run build"
   },
   "dependencies": {

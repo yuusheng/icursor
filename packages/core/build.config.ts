@@ -12,4 +12,5 @@ export default defineBuildConfig({
   rollup: {
     emitCJS: true,
   },
+  failOnWarn: false,
 })
