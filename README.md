@@ -27,4 +27,7 @@ import { createCursor } from 'icursor'
 
 createCursor({ '.btn': 'btn-class' })
 ```
-> you should import `icursor/main.css` as early as possible, or at least import `icursor/main.css` before your custom stylesheet to make sure that your own css can work.
+> You should import `icursor/main.css` as early as possible, or at least import `icursor/main.css` before your custom stylesheet to make sure that your own css can work.
+
+## Todo
+- refactor cursor inner with canvas or maybe svg
