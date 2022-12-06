@@ -2,7 +2,7 @@
 
 (_WIP_)
 
-this package is helping you to curstomize your cursor in web looks like cursor in iPad
+This package is helping you to curstomize your cursor in web looks like cursor in iPad
 
 ## Usage
 

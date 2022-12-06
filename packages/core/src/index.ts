@@ -15,7 +15,7 @@ export function createCursor(selector: string | SelectorMap) {
     body?.append(cursorEl)
     if (!cursor)
       cursor = new Cursor(selector)
-    console.log(cursor)
+
     return cursor
   }
 }
