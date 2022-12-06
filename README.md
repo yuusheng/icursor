@@ -1,4 +1,4 @@
-# ICursor
+# iCursor
 
 (_WIP_)
 
