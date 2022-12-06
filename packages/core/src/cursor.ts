@@ -10,9 +10,8 @@ class Cursor {
   clientY: number
   stuckX: number
   stuckY: number
-  showCursor: boolean
   isStuck: boolean
-  cursorOriginals: any
+  cursorOriginals: { width: number; height: number }
   selectors: string[]
   selector: string | SelectorMap
 
@@ -32,7 +31,6 @@ class Cursor {
     this.isStuck = false
     this.clientX = -100
     this.clientY = -100
-    this.showCursor = false
 
     this.cursorOriginals = {
       width: this.cursorInner.offsetWidth,
@@ -45,8 +43,12 @@ class Cursor {
     })
 
     const render = () => {
-      if (!this.isStuck)
-        transform(this.cursor, 0, { x: this.clientX, y: this.clientY })
+      if (!this.isStuck) {
+        transform(this.cursor, 0, {
+          x: this.clientX - this.cursorBox.width / 2,
+          y: this.clientY - this.cursorBox.height / 2,
+        })
+      }
       requestAnimationFrame(render)
     }
     requestAnimationFrame(render)
@@ -62,7 +64,7 @@ class Cursor {
       const linkBox = target.getBoundingClientRect()
 
       const { height, width } = this.cursorObjectBox
-      transform(this.cursor, 0, {
+      transform(this.cursor, 0.25, {
         x: linkBox.left + linkBox.width / 2 - this.cursorBox.width / 2,
         y: linkBox.top + linkBox.height / 2 - this.cursorBox.height / 2 - 0.5,
       })
