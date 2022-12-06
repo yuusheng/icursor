@@ -1,0 +1,20 @@
+{
+  "name": "icursor",
+  "version": "0.0.1",
+  "description": "Make your cursor in web looks like ios",
+  "author": "yuusheng <hi@yuusheng.im>",
+  "license": "MIT",
+  "keywords": [],
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "unbuild"
+  },
+  "dependencies": {
+    "@icursor/core": "workspace:0.0.1"
+  }
+}

@@ -24,18 +24,26 @@ importers:
   packages/core:
     specifiers: {}
 
+  packages/icursor:
+    specifiers:
+      '@icursor/core': workspace:0.0.1
+    dependencies:
+      '@icursor/core': link:../core
+
   playground:
     specifiers:
       '@icursor/core': workspace:*
       '@unocss/preset-uno': ^0.47.5
       '@unocss/vite': ^0.47.5
       '@vitejs/plugin-vue': ^3.2.0
+      icursor: workspace:*
       unocss: ^0.47.5
       vite: ^3.2.4
       vue: ^3.2.45
     dependencies:
       '@icursor/core': link:../packages/core
       '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.2.0_vite@3.2.4+vue@3.2.45
+      icursor: link:../packages/icursor
       vue: registry.npmmirror.com/vue/3.2.45
     devDependencies:
       '@unocss/preset-uno': registry.npmmirror.com/@unocss/preset-uno/0.47.5

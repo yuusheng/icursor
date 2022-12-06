@@ -23,7 +23,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.base-btn-hover {
+.cursor .base-btn-hover {
   background-color: red;
 }
 </style>
