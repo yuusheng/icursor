@@ -64,7 +64,7 @@ class Cursor {
       const linkBox = target.getBoundingClientRect()
 
       const { height, width } = this.cursorObjectBox
-      transform(this.cursor, 0.25, {
+      transform(this.cursor, 0.1, {
         x: linkBox.left + linkBox.width / 2 - this.cursorBox.width / 2,
         y: linkBox.top + linkBox.height / 2 - this.cursorBox.height / 2 - 0.5,
       })
