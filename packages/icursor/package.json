@@ -5,16 +5,25 @@
   "author": "yuusheng <hi@yuusheng.im>",
   "license": "MIT",
   "keywords": [],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./*": "./*"
+  },
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "*.d.ts"
+    "*.css"
   ],
   "scripts": {
     "build": "unbuild"
   },
   "dependencies": {
-    "@icursor/core": "workspace:0.0.1"
+    "@icursor/core": "workspace:*"
   }
 }

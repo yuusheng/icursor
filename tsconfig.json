@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "moduleResolution": "node",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "target": "ESNext",
-    "module": "ESNext"
+    "module": "ESNext",
+    "paths": {
+      "@icursor/core": ["./packages/core/src/index.ts"],
+      "icursor": ["./packages/icursor/src/index.ts"]
+    }
   }
 }

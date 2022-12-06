@@ -10,9 +10,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@icursor/core": "workspace:*",
     "@vitejs/plugin-vue": "^3.2.0",
-    "icursor": "workspace:*",
     "vue": "^3.2.45"
   },
   "devDependencies": {

@@ -11,10 +11,8 @@
     "build": "turbo run build",
     "deploy": "npm run build && npm -C playground run build"
   },
-  "dependencies": {
-    "@icursor/core": "workspace:*"
-  },
   "devDependencies": {
+    "@types/node": "^18.11.11",
     "@yuusheng/eslint-config": "^0.0.4",
     "eslint": "^8.29.0",
     "turbo": "^1.6.3",
