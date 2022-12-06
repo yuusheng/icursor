@@ -44,7 +44,7 @@ class Cursor {
 
     const render = () => {
       if (!this.isStuck) {
-        transform(this.cursor, 0, {
+        transform(this.cursor, {
           x: this.clientX - this.cursorBox.width / 2,
           y: this.clientY - this.cursorBox.height / 2,
         })
