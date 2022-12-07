@@ -1,8 +1,15 @@
-# iCursor
+<p align="center">
+<img src="https://raw.githubusercontent.com/yuusheng/icursor/5d395eaf1ecb9382d28c294977c02e82ce18d0dd/playground/public/iCursor.svg" style="width:100px;" />
+</p>
 
-:construction:(_WIP_)
+<p align="center">
+Helping you to curstomize your cursor in web looks like cursor in iPad.
+</p>
 
-This package is helping you to curstomize your cursor in web looks like cursor in iPad
+
+:construction:
+
+
 
 ## Usage
 
