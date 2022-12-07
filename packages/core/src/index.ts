@@ -6,13 +6,17 @@ export function createCursor(selector: string | SelectorMap) {
   return addCursorToBody()
   function addCursorToBody() {
     const body = document.querySelector('body')
+    const createClassDiv = (classname: string | string[]) => {
+      classname = typeof classname === 'string' ? [classname] : classname
+      const div = document.createElement('div')
+      div.classList.add(...classname)
+      return div
+    }
 
-    const cursorInner = document.createElement('div')
-    cursorInner.classList.add('cursor__inner')
-    const cursorEl = document.createElement('div')
-    cursorEl.classList.add('cursor')
-    cursorEl.append(cursorInner)
-    body?.append(cursorEl)
+    const cursorInner = createClassDiv(['cursor__inner', 'cursor'])
+    const cursorOuter = createClassDiv(['cursor__outer', 'cursor'])
+
+    body?.append(cursorInner, cursorOuter)
     if (!cursor)
       cursor = new Cursor(selector)
 

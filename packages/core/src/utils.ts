@@ -19,13 +19,31 @@ export function transform(element: HTMLElement, p1: number | TranslateType, p2?:
     duration = 0
     translateType = p1
   }
+  const { width, height, x = 0, y = 0, rotation } = translateType
+  const transform
+    = (x || y ? `translate(${x}px, ${y}px)` : '')
+    + (rotation ? `rotate(${rotation}deg)` : '')
 
-  const translate = `translate(${translateType.x || 0}px, ${translateType.y || 0}px)`
+  if (width)
+    element.style.width = `${width}px`
+  if (height)
+    element.style.height = `${height}px`
 
-  const route = translateType.rotation ? `rotate(${translateType.rotation}deg)` : ''
-
-  const scale = `scale(${translateType.width || 1}, ${translateType.height || 1})`
-
-  element.style.transform = `${translate} ${route} ${scale}`
+  element.style.transform = transform
   element.style.transition = `${duration * 1000}ms`
+}
+
+interface Style extends Partial<CSSStyleDeclaration> {
+  x?: number | string
+  y?: number | string
+}
+
+export function setAttribute(element: HTMLElement, vars: Style) {
+  Object.entries(vars)
+    .filter(([key]) => key !== 'x' && key !== 'y')
+    .forEach(([key, value]) => {
+      element.style[key] = value
+    })
+  const { x, y } = vars
+  element.style.transform = `translate(${x}px, ${y}px)`
 }

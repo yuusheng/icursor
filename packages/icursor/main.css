@@ -10,13 +10,24 @@
   top: 0;
   pointer-events: none;
   z-index: 5000;
+  border-radius: 50%;
+  box-sizing: border-box !important;
 }
 
 .cursor__inner {
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  left: -15px;
+  background: radial-gradient(#fff, rgba(255, 255, 255, 0));
+  opacity: 0;
+  z-index: 12000;
+}
+
+.cursor__outer {
   width: var(--cursor-width);
   height: var(--cursor-width);
   background: rgba(61, 61, 61, 0.12);
-  border: 1px solid rgba(173, 173, 173, 0.26);
-  z-index: 5000;
-  border-radius: 100%;
+  outline: 1px solid rgba(173, 173, 173, 0.26);
+  z-index: 10000;
 }

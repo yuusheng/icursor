@@ -13,7 +13,7 @@ export default defineConfig({
     Uno({
       presets: [presetUno(), presetAttributify(), presetIcons()],
       shortcuts: {
-        'base-btn': 'px2 py1 mx1 bg-blue rounded border-none',
+        'base-btn': 'px3 py2 mx5 bg-gray-3 rounded border-none',
       },
     }),
   ],

@@ -1,11 +1,11 @@
-import { transform } from './utils'
+import { setAttribute, transform } from './utils'
 import type { SelectorMap } from './types'
 
 class Cursor {
-  cursor: HTMLElement
+  cursorOuter: HTMLElement
+  cursorOuterBox: DOMRect
   cursorInner: HTMLElement
-  cursorObjectBox: DOMRect
-  cursorBox: DOMRect
+  cursorInnerBox: DOMRect
   clientX: number
   clientY: number
   stuckX: number
@@ -23,18 +23,18 @@ class Cursor {
   }
 
   initCursor() {
-    this.cursor = document.querySelector('.cursor')!
+    this.cursorOuter = document.querySelector('.cursor__outer')!
     this.cursorInner = document.querySelector('.cursor__inner')!
-    this.cursorObjectBox = this.cursorInner.getBoundingClientRect()
-    this.cursorBox = this.cursor.getBoundingClientRect()
+    this.cursorOuterBox = this.cursorOuter.getBoundingClientRect()
+    this.cursorInnerBox = this.cursorInner.getBoundingClientRect()
 
     this.isStuck = false
     this.clientX = -100
     this.clientY = -100
 
     this.cursorOriginals = {
-      width: this.cursorInner.offsetWidth,
-      height: this.cursorInner.offsetHeight,
+      width: this.cursorOuter.offsetWidth,
+      height: this.cursorOuter.offsetHeight,
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -43,10 +43,11 @@ class Cursor {
     })
 
     const render = () => {
+      setAttribute(this.cursorInner, { x: this.clientX, y: this.clientY })
       if (!this.isStuck) {
-        transform(this.cursor, {
-          x: this.clientX - this.cursorBox.width / 2,
-          y: this.clientY - this.cursorBox.height / 2,
+        transform(this.cursorOuter, {
+          x: this.clientX - this.cursorOuterBox.width / 2,
+          y: this.clientY - this.cursorOuterBox.height / 2,
         })
       }
       requestAnimationFrame(render)
@@ -63,32 +64,30 @@ class Cursor {
       const target = (e.currentTarget as HTMLElement)
       const linkBox = target.getBoundingClientRect()
 
-      const { height, width } = this.cursorObjectBox
-      transform(this.cursor, 0.1, {
-        x: linkBox.left + linkBox.width / 2 - this.cursorBox.width / 2,
-        y: linkBox.top + linkBox.height / 2 - this.cursorBox.height / 2 - 0.5,
-      })
-      transform(this.cursorInner, 0.2, {
-        width: linkBox.width / width,
-        height: linkBox.height / height,
+      transform(this.cursorOuter, 0.2, {
+        x: linkBox.left,
+        y: linkBox.top,
+        width: linkBox.width,
+        height: linkBox.height,
       })
       if (typeof this.selector === 'object') {
         const className = Array.from((e.target as Element).classList).filter(className => !!this.selector[`.${className}`])
-        console.log('class name', this.selector[`.${className[0]}`])
 
         curClassName = this.selector[`.${className[0]}`]
-        this.cursorInner.classList.add(curClassName)
+        this.cursorOuter.classList.add(curClassName)
       }
     }
 
     const handleMouseLeave = () => {
       this.isStuck = false
 
-      transform(this.cursorInner, 0.25, {
-        width: 1,
-        height: 1,
+      const { height, width } = this.cursorOriginals
+      transform(this.cursorOuter, 0.5, {
+        width,
+        height,
       })
-      this.cursorInner.classList.remove(curClassName)
+
+      this.cursorOuter.classList.remove(curClassName)
     }
 
     const items = this.selectors.reduce((pre, cur) => {
