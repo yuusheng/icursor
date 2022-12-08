@@ -1,6 +1,6 @@
 {
   "name": "icursor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Make your cursor in web looks like ios",
   "author": "yuusheng <hi@yuusheng.im>",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "build": "turbo run build",
     "deploy": "npm run build && npm -C playground run build",
-    "release": "bumpp package.json packages/**/package.json"
+    "release": "pnpm run build && bumpp package.json packages/**/package.json"
   },
   "dependencies": {
     "bumpp": "^8.2.1"
