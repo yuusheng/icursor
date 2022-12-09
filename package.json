@@ -1,7 +1,7 @@
 {
   "name": "icursor",
-  "version": "0.0.5",
-  "private": "true",
+  "version": "0.0.6",
+  "private": true,
   "description": "Make your cursor in web looks like ios",
   "author": "yuusheng <hi@yuusheng.im>",
   "license": "MIT",
