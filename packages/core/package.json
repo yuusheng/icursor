@@ -1,6 +1,6 @@
 {
   "name": "@icursor/core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Make your cursor in web looks like ios",
   "author": "yuusheng <hi@yuusheng.im>",
   "license": "MIT",
@@ -21,6 +21,10 @@
     "dist",
     "*.css"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "unbuild"
   }
