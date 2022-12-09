@@ -1,12 +1,12 @@
 {
   "name": "icursor",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "private": "true",
   "description": "Make your cursor in web looks like ios",
   "author": "yuusheng <hi@yuusheng.im>",
   "license": "MIT",
   "homepage": "https://github.com/yuusheng/icursor",
   "keywords": [],
-  "private": "true",
   "scripts": {
     "play": "npm -C playground run dev",
     "lint": "eslint .",
