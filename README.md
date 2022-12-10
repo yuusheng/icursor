@@ -7,10 +7,6 @@ Helping you to curstomize your cursor in web looks like cursor in iPad.
 </p>
 
 
-:construction:
-
-
-
 ## Usage
 
 ```bash
@@ -21,7 +17,6 @@ npm i icursor
 import 'icursor/main.css'
 import { createCursor } from 'icursor'
 
-// not stable! API could be change at any time
 // only support class selector right now
 createCursor('.btn')
 ```

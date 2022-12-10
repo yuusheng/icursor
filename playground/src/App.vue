@@ -10,16 +10,16 @@ onMounted(() => {
 <template>
   <div>
     <button class="base-btn">
-      button 1
+      iCursor
     </button>
     <button class="base-btn">
-      button 2
+      iCursor
     </button>
     <button base-btn>
-      button 3
+      none
     </button>
     <button base-btn>
-      button
+      none
     </button>
   </div>
 </template>
