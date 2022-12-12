@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Uno from '@unocss/vite'
+import Uno from 'unocss/vite'
 import { presetAttributify, presetIcons, presetUno } from 'unocss'
 import { alias } from '../alias'
 

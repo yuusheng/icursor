@@ -8,7 +8,8 @@
   "keywords": [],
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "nr build && vite preview"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
@@ -17,6 +18,7 @@
     "vue": "^3.2.45"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.36",
     "@unocss/preset-uno": "^0.47.5",
     "@unocss/vite": "^0.47.5",
     "vite": "^3.2.4"
