@@ -1,11 +1,11 @@
 import { isObject, setAttribute, toArray, transform } from './utils'
 import type { SelectorMap } from './types'
 
-class Cursor {
-  private cursorOuter: HTMLElement
-  private cursorOuterBox: DOMRect
-  private cursorInner: HTMLElement
-  private cursorInnerBox: DOMRect
+class ICursor {
+  private iCursorOuter: HTMLElement
+  private iCursorOuterBox: DOMRect
+  private iCursorInner: HTMLElement
+  private iCursorInnerBox: DOMRect
   private clientX: number
   private clientY: number
   private stuckX: number
@@ -13,9 +13,9 @@ class Cursor {
   private isStuck: boolean
   private cursorOriginals: { width: number; height: number }
   private selectors: string[]
-  private selector: string | SelectorMap | string[]
+  private selector: string | string[] | SelectorMap
 
-  constructor(selector: string | SelectorMap | string[]) {
+  constructor(selector: string | string[] | SelectorMap) {
     this.selector = selector
     this.selectors = isObject(selector) ? Object.keys(selector) : toArray(selector)
     this.initCursor()
@@ -23,18 +23,18 @@ class Cursor {
   }
 
   private initCursor() {
-    this.cursorOuter = document.querySelector('.cursor__outer')!
-    this.cursorInner = document.querySelector('.cursor__inner')!
-    this.cursorOuterBox = this.cursorOuter.getBoundingClientRect()
-    this.cursorInnerBox = this.cursorInner.getBoundingClientRect()
+    this.iCursorOuter = document.querySelector('.icursor__outer')!
+    this.iCursorInner = document.querySelector('.icursor__inner')!
+    this.iCursorOuterBox = this.iCursorOuter.getBoundingClientRect()
+    this.iCursorInnerBox = this.iCursorInner.getBoundingClientRect()
 
     this.isStuck = false
     this.clientX = -100
     this.clientY = -100
 
     this.cursorOriginals = {
-      width: this.cursorOuter.offsetWidth,
-      height: this.cursorOuter.offsetHeight,
+      width: this.iCursorOuter.offsetWidth,
+      height: this.iCursorOuter.offsetHeight,
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -43,11 +43,11 @@ class Cursor {
     })
 
     const render = () => {
-      setAttribute(this.cursorInner, { x: this.clientX, y: this.clientY })
+      setAttribute(this.iCursorInner, { x: this.clientX, y: this.clientY })
       if (!this.isStuck) {
-        transform(this.cursorOuter, {
-          x: this.clientX - this.cursorOuterBox.width / 2,
-          y: this.clientY - this.cursorOuterBox.height / 2,
+        transform(this.iCursorOuter, {
+          x: this.clientX - this.iCursorOuterBox.width / 2,
+          y: this.clientY - this.iCursorOuterBox.height / 2,
         })
       }
       requestAnimationFrame(render)
@@ -64,7 +64,7 @@ class Cursor {
       const target = (e.currentTarget as HTMLElement)
       const linkBox = target.getBoundingClientRect()
 
-      transform(this.cursorOuter, 0.2, {
+      transform(this.iCursorOuter, 0.2, {
         x: linkBox.left,
         y: linkBox.top,
         width: linkBox.width,
@@ -74,7 +74,7 @@ class Cursor {
         const className = Array.from((e.target as Element).classList).filter(className => !!this.selector[`.${className}`])
 
         curClassName = this.selector[`.${className[0]}`]
-        this.cursorOuter.classList.add(curClassName)
+        this.iCursorOuter.classList.add(curClassName)
       }
     }
 
@@ -82,12 +82,12 @@ class Cursor {
       this.isStuck = false
 
       const { height, width } = this.cursorOriginals
-      transform(this.cursorOuter, 0.5, {
+      transform(this.iCursorOuter, 0.5, {
         width,
         height,
       })
 
-      this.cursorOuter.classList.remove(curClassName)
+      this.iCursorOuter.classList.remove(curClassName)
     }
 
     const elements: HTMLElement[] = this.selectors.reduce((pre, cur) => {
@@ -101,4 +101,4 @@ class Cursor {
   }
 }
 
-export default Cursor
+export default ICursor

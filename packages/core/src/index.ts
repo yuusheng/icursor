@@ -1,4 +1,4 @@
 export { default } from './generator'
+export { default as ICursor } from './cursor'
 export * from './utils'
-export { default as Cursor } from './cursor'
 export * from './types'

@@ -2,7 +2,7 @@
   cursor: none;
 }
 
-.cursor {
+.icursor {
   --cursor-width: 20px;
 
   position: fixed;
@@ -14,7 +14,7 @@
   box-sizing: border-box !important;
 }
 
-.cursor__inner {
+.icursor__inner {
   width: 30px;
   height: 30px;
   top: -15px;
@@ -24,7 +24,7 @@
   z-index: 12000;
 }
 
-.cursor__outer {
+.icursor__outer {
   width: var(--cursor-width);
   height: var(--cursor-width);
   background: rgba(61, 61, 61, 0.12);
