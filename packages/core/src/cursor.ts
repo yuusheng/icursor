@@ -1,28 +1,28 @@
-import { setAttribute, transform } from './utils'
+import { isObject, setAttribute, toArray, transform } from './utils'
 import type { SelectorMap } from './types'
 
 class Cursor {
-  cursorOuter: HTMLElement
-  cursorOuterBox: DOMRect
-  cursorInner: HTMLElement
-  cursorInnerBox: DOMRect
-  clientX: number
-  clientY: number
-  stuckX: number
-  stuckY: number
-  isStuck: boolean
-  cursorOriginals: { width: number; height: number }
-  selectors: string[]
-  selector: string | SelectorMap
+  private cursorOuter: HTMLElement
+  private cursorOuterBox: DOMRect
+  private cursorInner: HTMLElement
+  private cursorInnerBox: DOMRect
+  private clientX: number
+  private clientY: number
+  private stuckX: number
+  private stuckY: number
+  private isStuck: boolean
+  private cursorOriginals: { width: number; height: number }
+  private selectors: string[]
+  private selector: string | SelectorMap | string[]
 
-  constructor(selector: string | SelectorMap) {
+  constructor(selector: string | SelectorMap | string[]) {
     this.selector = selector
-    this.selectors = typeof selector === 'object' ? Object.keys(selector) : [selector]
+    this.selectors = isObject(selector) ? Object.keys(selector) : toArray(selector)
     this.initCursor()
     this.initHovers()
   }
 
-  initCursor() {
+  private initCursor() {
     this.cursorOuter = document.querySelector('.cursor__outer')!
     this.cursorInner = document.querySelector('.cursor__inner')!
     this.cursorOuterBox = this.cursorOuter.getBoundingClientRect()
@@ -55,7 +55,7 @@ class Cursor {
     requestAnimationFrame(render)
   }
 
-  initHovers() {
+  private initHovers() {
     let curClassName: string
     const handleMouseEnter = (e: Event) => {
       this.isStuck = true
@@ -70,7 +70,7 @@ class Cursor {
         width: linkBox.width,
         height: linkBox.height,
       })
-      if (typeof this.selector === 'object') {
+      if (isObject(this.selector)) {
         const className = Array.from((e.target as Element).classList).filter(className => !!this.selector[`.${className}`])
 
         curClassName = this.selector[`.${className[0]}`]
@@ -90,13 +90,13 @@ class Cursor {
       this.cursorOuter.classList.remove(curClassName)
     }
 
-    const items = this.selectors.reduce((pre, cur) => {
+    const elements: HTMLElement[] = this.selectors.reduce((pre, cur) => {
       pre.push(...document.querySelectorAll(cur))
       return pre
     }, [])
-    items.forEach((item) => {
-      item.addEventListener('mouseenter', handleMouseEnter)
-      item.addEventListener('mouseleave', handleMouseLeave)
+    elements.forEach((element) => {
+      element.addEventListener('mouseenter', handleMouseEnter)
+      element.addEventListener('mouseleave', handleMouseLeave)
     })
   }
 }
