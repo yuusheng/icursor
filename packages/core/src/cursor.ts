@@ -1,4 +1,4 @@
-import { isObject, setAttribute, toArray, transform } from './utils'
+import { getBasic, isObject, setAttribute, toArray, transform } from './utils'
 import type { SelectorMap } from './types'
 
 class ICursor {
@@ -64,12 +64,17 @@ class ICursor {
       const target = (e.currentTarget as HTMLElement)
       const linkBox = target.getBoundingClientRect()
 
-      transform(this.iCursorOuter, 0.2, {
+      const option = {
         x: linkBox.left,
         y: linkBox.top,
         width: linkBox.width,
         height: linkBox.height,
-      })
+      }
+      const basic = getBasic(this.selector)
+      if (basic.length)
+        target.classList.contains('.')
+
+      transform(this.iCursorOuter, 0.2, option)
       if (isObject(this.selector)) {
         const className = Array.from((e.target as Element).classList).filter(className => !!this.selector[`.${className}`])
 

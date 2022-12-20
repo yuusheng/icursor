@@ -4,6 +4,7 @@ interface TranslateType {
   rotation?: number
   width?: number
   height?: number
+  borderRadius?: string | number
 }
 
 export function transform(element: HTMLElement, duration: number, translateType: TranslateType): void
@@ -19,17 +20,24 @@ export function transform(element: HTMLElement, p1: number | TranslateType, p2?:
     duration = 0
     translateType = p1
   }
-  const { width, height, x = 0, y = 0, rotation } = translateType
+  const { width, height, x = 0, y = 0, rotation, borderRadius } = translateType
+
   const transform
     = (x || y ? `translate(${x}px, ${y}px)` : '')
     + (rotation ? `rotate(${rotation}deg)` : '')
+  element.style.transform = transform
 
   if (width)
     element.style.width = `${width}px`
   if (height)
     element.style.height = `${height}px`
+  if (borderRadius) {
+    element.style.borderRadius
+        = typeof borderRadius === 'number'
+        ? `${borderRadius}px`
+        : borderRadius
+  }
 
-  element.style.transform = transform
   element.style.transition = `${duration * 1000}ms`
 }
 
